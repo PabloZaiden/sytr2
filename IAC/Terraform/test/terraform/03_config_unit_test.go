@@ -19,12 +19,12 @@ func Test03_WebAPP(t *testing.T) {
   rmResourceGroupName := os.Getenv("resource_group_name")
   rmStorageAccName := os.Getenv("storage_account_name")
   rmContainerName := os.Getenv("container_name")
-  rmKey := "03_web/01_deployment_test.tfstate"
+  rmKey := "03_config/01_deployment_test.tfstate"
 
   // Configure Terraform setting up a path to Terraform code.
   terraformOptions := &terraform.Options{
     // The path to where our Terraform code is located
-    TerraformDir: "../../terraform/03_webapp/01_deployment",
+    TerraformDir: "../../terraform/03_config/01_deployment",
 
     // Variables to pass to init remote state
     BackendConfig: map[string]interface{}{
@@ -33,7 +33,7 @@ func Test03_WebAPP(t *testing.T) {
       "storage_account_name": rmStorageAccName,
       "key":                  rmKey},
     Vars: map[string]interface{}{
-      "rs_container_key": "Test_Mocks/02_sql/01_deployment.tfstate",
+      "rs_container_key": "Test_Mocks/02_storage/01_deployment.tfstate",
     },
     Reconfigure: true,
   }

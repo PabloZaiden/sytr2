@@ -1,5 +1,5 @@
-//go:build 02_sql || module_test
-// +build 02_sql module_test
+//go:build 02_storage || module_test
+// +build 02_storage module_test
 
 package terraform
 
@@ -13,7 +13,7 @@ import (
   "github.com/stretchr/testify/assert"
 )
 
-func Test02_SQL(t *testing.T) {
+func Test02_Storage(t *testing.T) {
   t.Parallel()
 
   location := "westus"
@@ -22,12 +22,12 @@ func Test02_SQL(t *testing.T) {
   rmResourceGroupName := os.Getenv("resource_group_name")
   rmStorageAccName := os.Getenv("storage_account_name")
   rmContainerName := os.Getenv("container_name")
-  rmKey := "02_sql/01_deployment_test.tfstate"
+  rmKey := "02_storage/01_deployment_test.tfstate"
 
   // Configure Terraform setting up a path to Terraform code.
   terraformOptions := &terraform.Options{
     // The path to where our Terraform code is located
-    TerraformDir: "../../terraform/02_sql/01_deployment",
+    TerraformDir: "../../terraform/02_storage/01_deployment",
 
     // Variables to pass to init remote state
     BackendConfig: map[string]interface{}{

@@ -27,26 +27,26 @@ func Test_EndToEnd(t *testing.T) {
   // Configure Terraform setting up a path to Terraform code.
   terraformOptions_02 := &terraform.Options{
     // The path to where our Terraform code is located
-    TerraformDir: "../../terraform/02_sql/01_deployment",
+    TerraformDir: "../../terraform/02_storage/01_deployment",
 
     // Variables to pass to init remote state
     BackendConfig: map[string]interface{}{
       "resource_group_name":  rmResourceGroupName,
       "container_name":       rmContainerName,
       "storage_account_name": rmStorageAccName,
-      "key":                  envName + "02_sql/01_deployment.tfstate"},
+      "key":                  envName + "02_storage/01_deployment.tfstate"},
     Reconfigure: true,
   }
   terraformOptions_03 := &terraform.Options{
     // The path to where our Terraform code is located
-    TerraformDir: "../../terraform/03_webapp/01_deployment",
+    TerraformDir: "../../terraform/03_config/01_deployment",
 
     // Variables to pass to init remote state
     BackendConfig: map[string]interface{}{
       "resource_group_name":  rmResourceGroupName,
       "container_name":       rmContainerName,
       "storage_account_name": rmStorageAccName,
-      "key":                  envName + "03_webapp/01_deployment.tfstate"},
+      "key":                  envName + "03_config/01_deployment.tfstate"},
     Reconfigure: true,
   }
 
