@@ -22,15 +22,6 @@ resource "azurerm_resource_group" "rg" {
   }
 }
 
-data "azurerm_client_config" "client_config" {
-}
-
-resource "azurerm_role_assignment" "data_owner_role_assignment" {
-  scope                = azurerm_resource_group.rg.id
-  role_definition_name = "App Configuration Data Owner"
-  principal_id         = data.azurerm_client_config.client_config.object_id
-}
-
 # ------------------------------------------------------------------------------------------------------
 # Deploy storage account
 # ------------------------------------------------------------------------------------------------------
@@ -40,12 +31,7 @@ resource "azurecaf_name" "storage_name" {
   prefixes      = [var.env]
   random_length = 3
   clean_input   = true
-
-  depends_on = [
-    azurerm_role_assignment.data_owner_role_assignment
-  ]
 }
-
 resource "azurerm_storage_account" "storage" {
   name                     = azurecaf_name.storage_name.result
   resource_group_name      = azurerm_resource_group.rg.name
